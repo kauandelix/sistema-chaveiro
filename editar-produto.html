@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Produto - Controle de Estoque</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="container">
+      <section id="edicaoProduto">
+        <h2 class="titulo-secao">Editar Produto</h2>
+        <form id="formEdicao" class="form-padrao">
+          <input type="hidden" id="produtoIndex"> <label for="editNome">Nome do Produto:</label>
+          <input type="text" id="editNome" class="input-campo" required>
+
+          <label for="editCategoria">Categoria:</label>
+          <select id="editCategoria" class="input-campo" required>
+            <option value="Chaves Residenciais">Chaves Residenciais</option>
+            <option value="Chaves Automotivas">Chaves Automotivas</option>
+            <option value="Fechaduras">Fechaduras</option>
+            <option value="Controles Remotos">Controles Remotos</option>
+            <option value="Serviços">Serviços (Cópia, Abertura, Instalação)</option>
+            <option value="Cadeados">Cadeados</option>
+            <option value="Acessórios">Acessórios</option>
+          </select>
+
+          <label for="editObservacoes">Observações:</label>
+          <textarea id="editObservacoes" class="textarea-campo"></textarea>
+
+          <button type="submit" class="btn btn-primario">Salvar Alterações</button>
+          <button type="button" class="btn btn-secundario" onclick="window.history.back()">Cancelar</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script src="assets/js/editar-produto.js"></script> </body>
+</html>

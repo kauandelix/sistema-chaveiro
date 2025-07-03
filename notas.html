@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Notas Fiscais e Recibos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="container-header">
+            <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+            <nav class="nav-principal-header">
+                <ul class="lista-navegacao-header">
+                    <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+                    <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+                    <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+                    <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+                    <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+                    <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+  <main class="main-content">
+    <div class="container">
+      <h2 class="titulo-secao">Emissão e Consulta de Notas</h2>
+
+      <section class="secao-emissao-nota">
+        <h3 class="subtitulo-secao">Emitir Nova Nota / Recibo</h3>
+        <form id="formEmissaoNota" class="form-padrao">
+          <input type="hidden" id="notaId" value="">
+          
+          <label for="tipoDocumento">Tipo de Documento:</label>
+          <select id="tipoDocumento" class="select-campo" required>
+            <option value="Nota Fiscal">Nota Fiscal</option>
+            <option value="Recibo Simples">Recibo Simples</option>
+          </select>
+
+          <label for="clienteNota">Cliente:</label>
+          <select id="clienteNota" class="select-campo" required>
+            <option value="">Selecione o Cliente</option>
+            </select>
+
+          <label for="dataEmissao">Data de Emissão:</label>
+          <input type="date" id="dataEmissao" class="input-campo" required>
+
+          <h4>Itens da Nota:</h4>
+          <div id="itensNotaContainer">
+            <div class="item-nota-linha">
+                <select class="select-campo produto-servico-nota-select" required>
+                    <option value="">Selecione Produto/Serviço</option>
+                </select>
+                <input type="text" class="input-campo item-descricao-manual" placeholder="Descrição Serviço" style="display:none;">
+                <input type="number" class="input-campo item-quantidade" placeholder="Qtd" min="1" value="1" required>
+                <input type="number" class="input-campo item-valor-unitario" placeholder="Valor Unit." step="0.01" min="0" required>
+                <span class="item-subtotal">Subtotal: R$ 0.00</span>
+                <button type="button" class="btn btn-danger-outline remover-item-btn">Remover</button>
+            </div>
+          </div>
+          <button type="button" id="adicionarItemNotaBtn" class="btn btn-secundario">Adicionar Item</button>
+          
+          <p class="total-nota"><strong>Total da Nota:</strong> <span id="valorTotalNota">R$ 0.00</span></p>
+
+          <label for="observacoesNota">Observações:</label>
+          <textarea id="observacoesNota" class="textarea-campo" placeholder="Observações adicionais (opcional)"></textarea>
+
+          <button type="submit" class="btn btn-primario">Emitir Nota</button>
+          <button type="button" id="btnCancelarEdicaoNota" class="btn btn-secundario" style="display: none;">Cancelar Edição</button>
+        </form>
+      </section>
+
+      <section class="secao-consulta-notas">
+        <h3 class="subtitulo-secao">Notas Emitidas</h3>
+
+        <div class="filtros-notas form-padrao">
+            <input type="text" id="filtroBuscaNota" class="input-campo" placeholder="Buscar por cliente, item...">
+            <select id="filtroTipoNota" class="select-campo">
+                <option value="Todas">Todos os Tipos</option>
+                <option value="Nota Fiscal">Notas Fiscais</option>
+                <option value="Recibo Simples">Recibos Simples</option>
+            </select>
+            <select id="filtroStatusNota" class="select-campo">
+                <option value="Todas">Todos os Status</option>
+                <option value="Ativa">Ativas</option>
+                <option value="Arquivada">Arquivadas</option>
+            </select>
+            <input type="date" id="filtroDataInicioNota" class="input-campo" placeholder="Data Início">
+            <input type="date" id="filtroDataFimNota" class="input-campo" placeholder="Data Fim">
+            <button type="button" id="aplicarFiltrosNotasBtn" class="btn btn-primario">Aplicar Filtros</button>
+            <button type="button" id="limparFiltrosNotasBtn" class="btn btn-secundario">Limpar Filtros</button>
+        </div>
+
+        <div id="listaNotas" class="area-resultado">
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Tipo</th>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaNotas">
+              </tbody>
+          </table>
+        </div>
+        <div id="paginacaoNotas" class="paginacao"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="modalVisualizacaoNota" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div id="conteudoNotaVisualizacao">
+        </div>
+      <button id="imprimirNotaBtn" class="btn btn-primario">Imprimir</button>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="assets/js/notas.js"></script>
+  <script src="assets/js/clientes.js"></script> <script src="assets/js/estoque.js"></script> </body>
+</html>

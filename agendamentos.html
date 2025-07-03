@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamentos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container-header">
+      <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+      <nav class="nav-principal-header">
+        <ul class="lista-navegacao-header">
+          <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+          <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+          <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+          <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+          <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+          <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      <h2 class="titulo-secao">Agendamentos</h2>
+      
+      <form id="agendamentoForm" class="form-padrao">
+        <input type="hidden" id="agendamentoId" value="">
+
+        <select id="cliente" class="select-campo" required>
+          <option value="">Selecione o Cliente</option>
+        </select>
+
+        <input type="datetime-local" id="dataHora" class="input-campo" required>
+        <input type="text" id="servico" class="input-campo" placeholder="Serviço a ser realizado" required>
+
+        <button type="submit" class="btn btn-primario">Agendar</button>
+        <button type="button" id="btnCancelarEdicao" class="btn btn-secundario" style="display: none;">Cancelar Edição</button>
+      </form>
+
+      <section class="secao-lista">
+        <h3 class="subtitulo-secao">Lista de Agendamentos</h3>
+        <div id="listaAgendamentos" class="area-resultado"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/js/agendamentos.js"></script>
+</body>
+</html>

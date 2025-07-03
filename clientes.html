@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastro e Busca de Clientes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="container-header">
+            <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+            <nav class="nav-principal-header">
+                <ul class="lista-navegacao-header">
+                    <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+                    <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+                    <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+                    <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+                    <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+                    <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="container layout-clientes">
+            <section class="secao-cadastro">
+                <h2 class="titulo-secao">Cadastro de Clientes</h2>
+                <form id="clienteForm" class="form-padrao">
+                    <input type="hidden" id="clienteId" />
+                    <input type="text" id="nome" class="input-campo" placeholder="Nome" required />
+                    <input type="text" id="cpf" class="input-campo" placeholder="CPF (somente números)" required />
+                    <input type="email" id="email" class="input-campo" placeholder="Email" required />
+                    <input type="text" id="telefone" class="input-campo" placeholder="Telefone (ex: (xx)xxxxx-xxxx)" required />
+                    <input type="text" id="endereco" class="input-campo" placeholder="Endereço" required />
+                    <textarea id="observacoes" class="textarea-campo" placeholder="Observações"></textarea>
+
+                    <h3 class="subtitulo-secao-pequeno">Campos Personalizados</h3>
+                    <div id="camposPersonalizadosContainer" class="campos-personalizados-grid">
+                        </div>
+                    <button type="button" id="btnAdicionarCampoPersonalizado" class="btn btn-secundario-outline">Adicionar Campo Personalizado</button>
+                    <br><br>
+
+                    <button type="submit" class="btn btn-primario">Cadastrar</button>
+                    <button type="button" id="btnCancelarEdicao" class="btn btn-secundario" style="display: none;">Cancelar Edição</button>
+                </form>
+            </section>
+
+            <section class="secao-busca">
+                <h2 class="titulo-secao">Buscar Cliente</h2>
+                <input type="text" id="campoBusca" class="input-campo input-busca" placeholder="Buscar por nome, telefone, CPF, etc." />
+                <div id="resultadoBusca" class="area-resultado">
+                    </div>
+                <button id="btnExportarCSV" class="btn btn-secundario">Exportar Clientes CSV</button>
+            </section>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="clientes.js"></script>
+</body>
+</html>

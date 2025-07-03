@@ -1,0 +1,1183 @@
+/* style.css - Versão Inspirada na Apple (com paleta de cores original do usuário) */
+
+/* --- Variáveis CSS para Cores e Fontes --- */
+:root {
+    /* Paleta Principal (Mantida do usuário, mas aplicada com sensibilidade Apple) */
+    --cor-primaria: #28A745; /* Verde para ações principais (Apple usaria algo mais neutro, mas mantendo a escolha do usuário) */
+    --cor-primaria-hover: #218838; /* Verde mais escuro para estados de hover */
+    --cor-secundaria: #6C757D; /* Cinza para elementos secundários */
+    --cor-secundaria-hover: #5A6268; /* Cinza mais escuro para hover secundário */
+    --cor-fundo: #F5F5F7; /* Cinza muito claro, quase branco, para uma sensação clean (inspirado no fundo da Apple) */
+    --cor-cards: #FFFFFF; /* Branco puro para cards */
+
+    /* Cores de Texto */
+    --cor-texto-principal: #1D1D1F; /* Preto quase puro para alto contraste (inspirado na Apple) */
+    --cor-texto-secundario: #6E6E73; /* Cinza médio para texto secundário (inspirado na Apple) */
+    --cor-texto-claro: #A1A1A6; /* Cinza claro para texto sutil (inspirado na Apple) */
+
+    /* UI Colors (Mantidas para consistência com as notificações e elementos de feedback) */
+    --cor-bordas: #EAEAEA; /* Cinza muito claro para bordas finas e sutis (inspirado na Apple) */
+    --cor-sucesso: #28A745; /* Verde para mensagens de sucesso */
+    --cor-erro: #DC3545; /* Vermelho para mensagens de erro */
+    --cor-alerta: #FFC107; /* Amarelo para alertas/atenção */
+    --cor-info: #17A2B8; /* Azul para mensagens informativas */
+
+    /* Sombras e Transições (Mais sutis e suaves, como na Apple) */
+    --sombra-leve: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.12); /* Sombra difusa e multicamada para profundidade sutil */
+    --sombra-media: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.16); /* Sombra ligeiramente mais pronunciada para hover */
+    --transicao-padrao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Curva de transição mais responsiva e fluida (inspirada na Apple) */
+    --transicao-rapida: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Tipografia (Fontes mais "Apple-like" com pesos e tamanhos refinados) */
+    --fonte-principal: 'Inter', 'SF Pro Text', 'Segoe UI', 'Roboto', Arial, sans-serif; /* Adicionado 'SF Pro Text' para inspiração Apple */
+    --fonte-titulo: 'Montserrat', 'SF Pro Display', sans-serif; /* Adicionado 'SF Pro Display' para inspiração Apple */
+
+    /* Raio da Borda (Mais consistente e arredondado) */
+    --borda-arredondada: 12px; /* Cantos bem arredondados para a maioria dos elementos */
+    --borda-arredondada-pequena: 8px; /* Cantos arredondados para inputs/botões */
+}
+
+/* Importar Google Fonts e fallback para SF Pro */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap');
+/* Fallback para SF Pro se não estiver disponível no sistema */
+@font-face {
+    font-family: 'SF Pro Display';
+    src: local('SF Pro Display');
+    font-weight: 400; /* Regular */
+}
+@font-face {
+    font-family: 'SF Pro Display';
+    src: local('SF Pro Display');
+    font-weight: 600; /* Semibold */
+}
+@font-face {
+    font-family: 'SF Pro Display';
+    src: local('SF Pro Display');
+    font-weight: 700; /* Bold */
+}
+@font-face {
+    font-family: 'SF Pro Text';
+    src: local('SF Pro Text');
+    font-weight: 400; /* Regular */
+}
+@font-face {
+    font-family: 'SF Pro Text';
+    src: local('SF Pro Text');
+    font-weight: 600; /* Semibold */
+}
+
+
+/* --- Reset Básico e Estilos Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    line-height: 1.55; /* Altura da linha otimizada para legibilidade, inspirado na Apple */
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-fundo);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* Melhor renderização de fonte */
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility; /* Melhora a renderização do texto */
+}
+
+a {
+    text-decoration: none;
+    color: var(--cor-primaria);
+    transition: var(--transicao-rapida); /* Transição mais rápida para links */
+}
+
+a:hover {
+    color: var(--cor-primaria-hover);
+    opacity: 0.85; /* Sutil opacidade no hover, comum na Apple */
+}
+
+/* --- Layout Principal --- */
+.container {
+    max-width: 1440px; /* Container mais largo para uma sensação mais expansiva */
+    margin: 0 auto;
+    padding: 24px; /* Padding generoso */
+}
+
+.main-content {
+    padding-top: 96px; /* Espaço para cabeçalho fixo */
+    min-height: calc(100vh - 70px); /* Ajustar para rodapé, se presente */
+    padding-bottom: 48px; /* Garante espaço inferior */
+}
+
+/* --- Cabeçalho Principal --- */
+.header-principal {
+    background-color: var(--cor-cards);
+    padding: 16px 0; /* Padding refinado */
+    box-shadow: var(--sombra-leve); /* Sombra mais sutil */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--cor-bordas); /* Borda inferior sutil */
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px; /* Padding refinado */
+}
+
+.titulo-sistema-header {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8em; /* Tamanho elegante para o título */
+    font-weight: 700;
+    color: var(--cor-primaria);
+    white-space: nowrap;
+    letter-spacing: -0.02em; /* Espaçamento de letras levemente negativo, comum na Apple */
+}
+
+.nav-principal-header .lista-navegacao-header {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Espaçamento generoso entre itens de navegação */
+}
+
+.nav-principal-header .link-navegacao-header {
+    font-size: 1.0em;
+    font-weight: 500;
+    color: var(--cor-texto-secundario);
+    padding: 8px 0;
+    position: relative;
+    transition: var(--transicao-rapida);
+}
+
+.nav-principal-header .link-navegacao-header:hover {
+    color: var(--cor-texto-principal); /* Quase preto no hover */
+}
+
+.nav-principal-header .link-navegacao-header::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 0;
+    height: 2px; /* Linha mais fina */
+    background-color: var(--cor-primaria);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-principal-header .link-navegacao-header:hover::after,
+.nav-principal-header .link-navegacao-header.active::after {
+    width: 100%;
+}
+
+/* --- Títulos de Seção --- */
+.titulo-secao {
+    font-family: var(--fonte-titulo);
+    font-size: 2.6em; /* Tamanho impactante, mas não exagerado */
+    color: var(--cor-texto-principal);
+    text-align: center;
+    margin-bottom: 48px; /* Margem generosa */
+    letter-spacing: -0.03em; /* Espaçamento de letras sutil */
+    font-weight: 700;
+}
+
+.subtitulo-secao {
+    font-family: var(--fonte-principal);
+    font-size: 1.5em; /* Tamanho elegante */
+    color: var(--cor-texto-principal);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--cor-bordas); /* Borda sutil */
+}
+
+.subtitulo-secao-pequeno {
+    font-size: 1.0em;
+    color: var(--cor-texto-secundario);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* --- Seções (Cards) --- */
+.secao-dashboard,
+.secao-cadastro,
+.secao-busca,
+.secao-vendas,
+.secao-despesas,
+.secao-filtros,
+.secao-lista-transacoes,
+.secao-emissao-nota,
+.secao-consulta-notas,
+.secao-lista,
+.secao-perfil,
+.secao-inventario,
+.secao-fornecedores,
+.secao-requisicoes {
+    background-color: var(--cor-cards);
+    padding: 32px; /* Padding generoso */
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve); /* Sombra mais sutil */
+    margin-bottom: 32px; /* Margem consistente */
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cor-bordas); /* Borda fina */
+}
+
+.secao-dashboard:hover,
+.secao-cadastro:hover,
+.secao-busca:hover,
+.secao-vendas:hover,
+.secao-despesas:hover,
+.secao-filtros:hover,
+.secao-lista-transacoes:hover,
+.secao-emissao-nota:hover,
+.secao-consulta-notas:hover,
+.secao-lista:hover,
+.secao-perfil:hover,
+.secao-inventario:hover,
+.secao-fornecedores:hover,
+.secao-requisicoes:hover {
+    box-shadow: var(--sombra-media); /* Sombra sutilmente mais forte no hover */
+    transform: translateY(-2px); /* Elevação sutil */
+}
+
+
+/* Layouts de Colunas */
+.layout-dashboard,
+.layout-clientes,
+.layout-estoque,
+.layout-caixa,
+.layout-notas,
+.layout-agendamentos {
+    display: grid;
+    gap: 24px; /* Espaçamento consistente */
+    grid-template-columns: 1fr; /* Mobile-first */
+}
+
+/* --- Formulários --- */
+.form-padrao {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espaçamento consistente */
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 8px; /* Margem menor para grupos de formulário */
+}
+
+.input-campo,
+.select-campo,
+.textarea-campo {
+    width: 100%;
+    padding: 12px 16px; /* Padding refinado */
+    border: 1px solid var(--cor-bordas);
+    border-radius: var(--borda-arredondada-pequena);
+    font-family: var(--fonte-principal);
+    font-size: 1.0em;
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-cards);
+    transition: var(--transicao-rapida);
+}
+
+.input-campo:focus,
+.select-campo:focus,
+.textarea-campo:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15); /* Sombra de foco mais discreta e elegante */
+    outline: none;
+    background-color: #FAFAFB; /* Fundo ligeiramente mais claro no foco */
+}
+
+.textarea-campo {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* --- Botões --- */
+.btn {
+    padding: 12px 24px; /* Padding refinado */
+    border: none;
+    border-radius: var(--borda-arredondada-pequena);
+    font-size: 1.0em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaçamento sutil para ícones */
+    letter-spacing: 0.02em; /* Espaçamento de letras sutil */
+    text-transform: none; /* Não uppercase para uma sensação mais natural */
+}
+
+.btn-primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-cards);
+    box-shadow: var(--sombra-leve);
+}
+
+.btn-primario:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-1px); /* Elevação muito sutil */
+    box-shadow: var(--sombra-media);
+}
+
+.btn-secundario {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-cards);
+    box-shadow: var(--sombra-leve);
+}
+
+.btn-secundario:hover {
+    background-color: var(--cor-secundaria-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-secundario-outline {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-primaria); /* Borda mais fina */
+    box-shadow: none;
+}
+
+.btn-secundario-outline:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-cards);
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-leve);
+}
+
+.btn-danger {
+    background-color: var(--cor-erro);
+    color: var(--cor-cards);
+    box-shadow: var(--sombra-leve);
+}
+
+.btn-danger:hover {
+    background-color: #C82333;
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-media);
+}
+
+
+/* --- Tabelas --- */
+.tabela-responsiva {
+    overflow-x: auto;
+    margin-top: 24px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    border: 1px solid var(--cor-bordas);
+    background-color: var(--cor-cards); /* Garante fundo branco para a tabela */
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 768px; /* Aumentado para melhor UX em desktop */
+}
+
+table th,
+table td {
+    padding: 12px 16px; /* Padding refinado */
+    text-align: left;
+    border-bottom: 1px solid var(--cor-bordas);
+}
+
+table thead th {
+    background-color: var(--cor-primaria);
+    color: var(--cor-cards);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+}
+
+table thead th:first-child {
+    border-top-left-radius: var(--borda-arredondada);
+}
+
+table thead th:last-child {
+    border-top-right-radius: var(--borda-arredondada);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #FDFDFE; /* Alternar linhas com branco sutil */
+}
+
+table tbody tr:hover {
+    background-color: #F8F9FA; /* Fundo muito claro no hover */
+    cursor: pointer;
+    transform: translateY(-1px); /* Elevação muito sutil no hover */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Sombra leve no hover */
+    position: relative;
+    z-index: 1;
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Botões dentro da tabela */
+table .btn-acao {
+    padding: 8px 12px;
+    font-size: 0.8em;
+    margin-right: 6px;
+    min-width: 80px;
+    border-radius: var(--borda-arredondada-pequena);
+}
+
+/* --- Área de Resultado (Geral) --- */
+.area-resultado {
+    background-color: var(--cor-cards);
+    padding: 24px;
+    border-radius: var(--borda-arredondada);
+    border: 1px solid var(--cor-bordas);
+    margin-top: 24px;
+    overflow-x: auto;
+    box-shadow: var(--sombra-leve);
+}
+
+/* --- Elementos Específicos do Dashboard (index.html) --- */
+.resumo-geral-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.card-resumo {
+    background-color: var(--cor-cards);
+    padding: 28px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cor-bordas);
+}
+
+.card-resumo:hover {
+    transform: translateY(-4px); /* Elevação sutil */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais visível no hover */
+}
+
+.card-resumo .icone-resumo {
+    font-size: 3.2em;
+    color: var(--cor-primaria);
+    margin-bottom: 12px;
+}
+
+.card-resumo .valor-resumo {
+    font-family: var(--fonte-titulo);
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--cor-texto-principal);
+    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+}
+
+.card-resumo .titulo-resumo {
+    font-size: 1.0em;
+    color: var(--cor-texto-secundario);
+    font-weight: 500;
+}
+
+.graficos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.grafico-item {
+    background-color: var(--cor-cards);
+    padding: 24px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+    border: 1px solid var(--cor-bordas);
+    transition: var(--transicao-padrao);
+}
+
+.grafico-item:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px);
+}
+
+.grafico-item h4 {
+    color: var(--cor-texto-principal);
+    margin-bottom: 16px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* Tabela de Movimentação de Estoque no Dashboard */
+.tabela-movimentacao-estoque {
+    margin-top: 24px;
+}
+
+/* --- Navegação por Abas (Estoque, Notas) --- */
+.abas-navegacao {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--cor-bordas); /* Borda mais fina */
+    gap: 12px;
+}
+
+.abas-navegacao .aba-btn {
+    background-color: transparent;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.0em;
+    font-weight: 500;
+    color: var(--cor-texto-secundario);
+    cursor: pointer;
+    transition: var(--transicao-rapida);
+    border-bottom: 2px solid transparent; /* Borda mais fina */
+    margin-bottom: -1px; /* Ajuste para sobrepor a borda do container */
+    position: relative;
+}
+
+.abas-navegacao .aba-btn:hover {
+    color: var(--cor-texto-principal);
+}
+
+.abas-navegacao .aba-btn.active {
+    color: var(--cor-primaria);
+    border-bottom-color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.secao-oculta {
+    display: none;
+}
+
+.secao-ativa {
+    display: block;
+    animation: fadeIn 0.4s ease-out; /* Animação mais rápida */
+}
+
+/* --- Listas (para Histórico, Movimentações) --- */
+#listaHistorico,
+#listaItensVenda,
+#listaAgendamentos,
+#listaTransacoes,
+#listaRequisicoes,
+#listaNotas,
+#historicoAgendamentos,
+#historicoVendas,
+#historicoNotas,
+#camposPersonalizadosPerfil {
+    list-style: none;
+    padding: 0;
+}
+
+#listaHistorico li,
+#listaTransacoes .transacao-item,
+#historicoAgendamentos .card-historico,
+#historicoVendas .card-historico,
+#historicoNotas .card-historico {
+    background-color: var(--cor-cards);
+    border: 1px solid var(--cor-bordas);
+    border-radius: var(--borda-arredondada);
+    padding: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transicao-padrao);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); /* Sombra inicial muito sutil */
+}
+
+#listaHistorico li:hover,
+#listaTransacoes .transacao-item:hover,
+#historicoAgendamentos .card-historico:hover,
+#historicoVendas .card-historico:hover,
+#historicoNotas .card-historico:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Sombra mais perceptível no hover */
+    background-color: #FDFDFE; /* Fundo ligeiramente mais claro */
+}
+
+#listaHistorico li span,
+#listaTransacoes .transacao-item span {
+    flex: 1;
+    min-width: 160px;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+}
+
+/* Elementos de Item de Venda/Nota */
+.item-venda-linha, .item-nota-linha {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px dashed var(--cor-bordas);
+    border-radius: var(--borda-arredondada-pequena);
+    background-color: #FDFDFD;
+}
+
+.item-venda-linha .input-campo, .item-nota-linha .input-campo {
+    margin-bottom: 0;
+}
+
+.item-venda-linha .remover-item-btn, .item-nota-linha .remover-item-btn {
+    background-color: var(--cor-erro);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px; /* Botão menor e mais discreto */
+    height: 32px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transicao-rapida);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.item-venda-linha .remover-item-btn:hover, .item-nota-linha .remover-item-btn:hover {
+    background-color: #C82333;
+    transform: scale(1.1); /* Escala sutil */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Notificações (Toast) --- */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: var(--cor-cards);
+    color: var(--cor-texto-principal);
+    padding: 16px 20px;
+    border-radius: var(--borda-arredondada-pequena);
+    box-shadow: var(--sombra-media); /* Sombra mais pronunciada para destaque */
+    animation: slideIn 0.35s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275), fadeOut 0.4s 3.2s forwards ease-out;
+    min-width: 250px;
+    max-width: 350px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    border: 1px solid var(--cor-bordas);
+}
+
+.toast.sucesso {
+    border-left: 5px solid var(--cor-sucesso);
+}
+
+.toast.erro {
+    border-left: 5px solid var(--cor-erro);
+}
+
+.toast.info {
+    border-left: 5px solid var(--cor-info);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(10px); /* Movimento sutil na saída */
+    }
+}
+
+/* Notificação de Próximos Agendamentos */
+.notificacao-agendamento-proximo {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: var(--cor-alerta);
+    color: var(--cor-texto-principal);
+    padding: 16px 20px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-media);
+    z-index: 1000;
+    max-width: 350px;
+    animation: fadeIn 0.5s ease-in-out;
+    border: 1px solid rgba(255, 193, 7, 0.3); /* Borda mais suave */
+}
+
+.notificacao-agendamento-proximo strong {
+    color: #856404;
+    font-weight: 700;
+}
+
+.notificacao-agendamento-proximo ul {
+    list-style: disc inside;
+    margin-top: 10px;
+    padding-left: 5px;
+    color: var(--cor-texto-secundario);
+}
+
+.notificacao-agendamento-proximo li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.notificacao-agendamento-proximo .fechar-notificacao {
+    float: right;
+    font-size: 1.6em;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--cor-texto-secundario);
+    transition: var(--transicao-rapida);
+}
+
+.notificacao-agendamento-proximo .fechar-notificacao:hover {
+    color: var(--cor-texto-principal);
+    transform: rotate(90deg);
+}
+
+
+/* --- Modais (Pop-ups) --- */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay ligeiramente menos opaco */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-conteudo, .modal-content {
+    background-color: var(--cor-cards);
+    margin: auto;
+    padding: 32px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-media); /* Sombra mais forte para o modal */
+    width: 90%;
+    max-width: 600px; /* Largura máxima um pouco menor */
+    position: relative;
+    transform: translateY(-50px) scale(0.98); /* Começa ligeiramente mais alto e menor */
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease-out;
+}
+
+.modal.active .modal-conteudo, .modal.active .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.close-button {
+    color: var(--cor-texto-claro);
+    font-size: 2.0em;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    cursor: pointer;
+    transition: var(--transicao-rapida);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--cor-erro);
+    transform: rotate(90deg);
+}
+
+/* Conteúdo da Nota em PDF */
+#conteudoNotaVisualizacao {
+    padding: 24px;
+    border: 1px solid var(--cor-bordas);
+    border-radius: var(--borda-arredondada-pequena);
+    background-color: #FDFDFD;
+    margin-bottom: 24px;
+}
+
+#conteudoNotaVisualizacao p {
+    margin-bottom: 6px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+#conteudoNotaVisualizacao strong {
+    color: var(--cor-texto-principal);
+    font-weight: 600;
+}
+
+
+/* --- Paginação --- */
+.paginacao {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    gap: 10px;
+}
+
+.paginacao button {
+    background-color: var(--cor-primaria);
+    color: var(--cor-cards);
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--borda-arredondada-pequena);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: var(--transicao-rapida);
+    font-weight: 500;
+}
+
+.paginacao button:hover:not(:disabled) {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.15);
+}
+
+.paginacao button:disabled {
+    background-color: var(--cor-bordas);
+    color: var(--cor-texto-claro);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* --- Estilos de Perfil de Cliente --- */
+.secao-perfil {
+    background-color: var(--cor-cards);
+    padding: 28px;
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-leve);
+    margin-bottom: 28px;
+    border: 1px solid var(--cor-bordas);
+}
+
+.info-cliente p {
+    margin-bottom: 8px;
+    font-size: 1.0em;
+    line-height: 1.5;
+}
+
+.info-cliente strong {
+    color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.info-cliente button {
+    margin-top: 16px;
+}
+
+.card-historico {
+    background-color: #F8F9FA; /* Fundo mais suave para histórico */
+    border: 1px solid var(--cor-bordas);
+    border-radius: var(--borda-arredondada-pequena);
+    padding: 16px;
+    margin-bottom: 10px;
+    transition: var(--transicao-padrao);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.card-historico:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #FDFDFE; /* Fundo ligeiramente mais claro no hover */
+    transform: translateY(-1px);
+}
+
+.card-historico p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+/* Campos personalizados no perfil */
+#camposPersonalizadosPerfil p {
+    background-color: #E6FFE6; /* Verde consistente para campos personalizados */
+    padding: 8px 12px;
+    border-radius: 16px; /* Formato de pílula mais arredondado */
+    margin-bottom: 6px;
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 0.85em;
+    color: var(--cor-texto-principal);
+    border: 1px solid rgba(40, 167, 69, 0.15);
+}
+
+/* Campos personalizados para registro */
+.campos-personalizados-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px dashed var(--cor-bordas);
+    border-radius: var(--borda-arredondada-pequena);
+    background-color: #FDFDFD;
+}
+
+.campo-personalizado-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.campo-personalizado-item .input-campo {
+    flex-grow: 1;
+    margin-bottom: 0;
+    min-width: 160px;
+}
+
+.campo-personalizado-item .remover-campo-btn {
+    background-color: var(--cor-erro);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.0em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transicao-rapida);
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.campo-personalizado-item .remover-campo-btn:hover {
+    background-color: #C82333;
+    transform: scale(1.08);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Filtros de busca em clientes.html */
+.input-busca {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: var(--borda-arredondada-pequena);
+}
+
+/* --- Media Queries para Responsividade --- */
+
+/* Tablets e Desktops Pequenos */
+@media (min-width: 768px) {
+    .main-content {
+        padding-top: 100px;
+    }
+
+    .header-principal {
+        padding: 18px 0;
+    }
+
+    .container-header {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .titulo-sistema-header {
+        font-size: 2.0em;
+    }
+
+    .nav-principal-header .lista-navegacao-header {
+        gap: 32px;
+    }
+
+    .titulo-secao {
+        font-size: 2.8em;
+        margin-bottom: 40px;
+    }
+
+    .subtitulo-secao {
+        font-size: 1.6em;
+    }
+
+    /* Layout de duas colunas para telas maiores */
+    .layout-clientes,
+    .layout-caixa,
+    .layout-estoque,
+    .layout-notas,
+    .layout-agendamentos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Ajustes específicos para a página de estoque */
+    .layout-estoque #cadastro,
+    .layout-estoque #controle,
+    .layout-estoque #historico,
+    .layout-estoque #fornecedores,
+    .layout-estoque #requisicoes {
+        grid-column: span 2;
+    }
+
+    .secao-cadastro,
+    .secao-vendas,
+    .secao-despesas,
+    .secao-emissao-nota {
+        grid-column: 1;
+    }
+
+    .secao-busca,
+    .secao-filtros,
+    .secao-lista-transacoes,
+    .secao-consulta-notas,
+    .secao-lista {
+        grid-column: 2;
+    }
+
+    .layout-clientes .secao-cadastro {
+        grid-column: 1;
+    }
+
+    .layout-clientes .secao-busca {
+        grid-column: 2;
+    }
+
+    .layout-caixa .secao-vendas {
+        grid-column: 1;
+    }
+
+    .layout-caixa .secao-despesas {
+        grid-column: 1;
+    }
+
+    .layout-caixa .secao-filtros {
+        grid-column: 2;
+    }
+
+    .layout-caixa .secao-lista-transacoes {
+        grid-column: span 2;
+    }
+
+    .layout-notas .secao-emissao-nota {
+        grid-column: 1;
+    }
+
+    .layout-notas .secao-consulta-notas {
+        grid-column: 2;
+    }
+
+    .layout-agendamentos form {
+        grid-column: 1;
+    }
+
+    .layout-agendamentos .secao-lista {
+        grid-column: 2;
+    }
+
+    .campo-personalizado-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .campos-personalizados-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Desktops Médios e Grandes */
+@media (min-width: 1024px) {
+    .container {
+        padding: 32px 64px;
+    }
+
+    .titulo-sistema-header {
+        font-size: 2.2em;
+    }
+
+    .nav-principal-header .lista-navegacao-header {
+        gap: 48px;
+    }
+
+    .titulo-secao {
+        font-size: 3.0em;
+    }
+
+    .secao-dashboard,
+    .secao-cadastro,
+    .secao-busca,
+    .secao-vendas,
+    .secao-despesas,
+    .secao-filtros,
+    .secao-lista-transacoes,
+    .secao-emissao-nota,
+    .secao-consulta-notas,
+    .secao-lista {
+        padding: 40px;
+    }
+
+    .btn {
+        padding: 14px 28px;
+        font-size: 1.05em;
+    }
+
+    /* Dashboards com mais colunas se houver espaço */
+    .layout-dashboard .resumo-geral-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* Estilos de Impressão (para modal de visualização de nota) */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #modalVisualizacaoNota, #modalVisualizacaoNota * {
+        visibility: visible;
+        overflow: visible !important;
+    }
+    #modalVisualizacaoNota {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        box-shadow: none;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    #conteudoNotaVisualizacao {
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+    }
+    .modal-content, .close-button, #imprimirNotaBtn {
+        display: none !important;
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil do Cliente</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container-header">
+      <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+      <nav class="nav-principal-header">
+        <ul class="lista-navegacao-header">
+          <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+          <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+          <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+          <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+          <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+          <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      <h2 class="titulo-secao">Perfil do Cliente: <span id="nomeClientePerfil"></span></h2>
+
+      <section class="secao-perfil">
+        <h3 class="subtitulo-secao">Informações Básicas</h3>
+        <div class="card-perfil">
+          <p><strong>Nome:</strong> <span id="perfilNome"></span></p>
+          <p><strong>CPF:</strong> <span id="perfilCpf"></span></p>
+          <p><strong>Email:</strong> <span id="perfilEmail"></span></p>
+          <p><strong>Telefone:</strong> <span id="perfilTelefone"></span></p>
+          <p><strong>Endereço:</strong> <span id="perfilEndereco"></span></p>
+          <p><strong>Data de Cadastro:</strong> <span id="perfilDataCadastro"></span></p>
+          <p><strong>Observações Gerais:</strong> <span id="perfilObservacoes"></span></p>
+          <div id="camposPersonalizadosPerfil">
+            </div>
+          <button onclick="window.location.href='clientes.html?editCpf=' + document.getElementById('perfilCpf').textContent" class="btn btn-secundario">Editar Cliente</button>
+        </div>
+      </section>
+
+      <section class="secao-perfil">
+        <h3 class="subtitulo-secao">Histórico de Agendamentos</h3>
+        <div id="historicoAgendamentos" class="area-resultado">
+          <p>Nenhum agendamento encontrado para este cliente.</p>
+        </div>
+      </section>
+
+      <section class="secao-perfil">
+        <h3 class="subtitulo-secao">Histórico de Vendas (Caixa)</h3>
+        <div id="historicoVendas" class="area-resultado">
+          <p>Nenhuma venda encontrada para este cliente.</p>
+        </div>
+      </section>
+
+      <section class="secao-perfil">
+        <h3 class="subtitulo-secao">Notas Fiscais Emitidas</h3>
+        <div id="historicoNotas" class="area-resultado">
+          <p>Nenhuma nota fiscal encontrada para este cliente.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/js/perfil.js"></script>
+  <script src="assets/js/clientes.js"></script> <script src="assets/js/agendamentos.js"></script> </body>
+</html>

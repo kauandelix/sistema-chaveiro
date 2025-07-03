@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Estoque</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="container-header">
+            <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+            <nav class="nav-principal-header">
+                <ul class="lista-navegacao-header">
+                    <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+                    <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+                    <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+                    <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+                    <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+                    <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+  <main class="main-content">
+    <div class="container">
+      <h2 class="titulo-secao">Controle de Estoque</h2>
+
+      <nav class="abas-navegacao">
+        <button class="aba-btn active" data-target="cadastro">Cadastro de Produto</button>
+        <button class="aba-btn" data-target="controle">Controle de Estoque</button>
+        <button class="aba-btn" data-target="fornecedores">Fornecedores</button>
+        <button class="aba-btn" data-target="inventario">Inventário</button>
+        <button class="aba-btn" data-target="requisicoes">Requisições de Compra</button>
+        <button class="aba-btn" data-target="historico">Histórico de Movimentações</button>
+      </nav>
+
+      <section id="cadastro" class="secao-ativa">
+        <h3 class="subtitulo-secao">Cadastro e Edição de Produto</h3>
+        <form id="formCadastro" class="form-padrao">
+          <input type="hidden" id="produtoId" value="">
+          <input type="text" id="nome" class="input-campo" placeholder="Nome do Produto" required>
+          <input type="text" id="categoria" class="input-campo" placeholder="Categoria" required>
+          <input type="number" id="quantidade" class="input-campo" placeholder="Quantidade Inicial" min="0" required>
+          <input type="number" id="valor" class="input-campo" placeholder="Valor Unitário de Venda (R$)" step="0.01" min="0" required>
+          <input type="number" id="nivelMinimo" class="input-campo" placeholder="Nível Mínimo para Alerta" min="0" value="5">
+          <select id="fornecedorProduto" class="select-campo">
+            <option value="">Selecione o Fornecedor (Opcional)</option>
+            </select>
+          <textarea id="observacoes" class="textarea-campo" placeholder="Observações (opcional)"></textarea>
+          <button type="submit" class="btn btn-primario">Cadastrar Produto</button>
+          <button type="button" id="btnCancelarEdicao" class="btn btn-secundario" style="display: none;">Cancelar Edição</button>
+        </form>
+      </section>
+
+      <section id="controle" class="secao-oculta">
+        <h3 class="subtitulo-secao">Lista de Produtos e Movimentação</h3>
+        <input type="text" id="busca" class="input-campo input-busca" placeholder="Buscar produto...">
+        
+        <div id="alertasEstoqueBaixo" class="alertas-container">
+          </div>
+
+        <div id="listaProdutos" class="area-resultado">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Nível Mínimo</th>
+                <th>Valor Venda</th>
+                <th>Fornecedor</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaEstoque"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="fornecedores" class="secao-oculta">
+        <h3 class="subtitulo-secao">Cadastro de Fornecedores</h3>
+        <form id="formFornecedor" class="form-padrao">
+          <input type="hidden" id="fornecedorId" value="">
+          <input type="text" id="nomeFornecedor" class="input-campo" placeholder="Nome do Fornecedor" required>
+          <input type="text" id="contatoFornecedor" class="input-campo" placeholder="Pessoa de Contato">
+          <input type="tel" id="telefoneFornecedor" class="input-campo" placeholder="Telefone (opcional)">
+          <input type="email" id="emailFornecedor" class="input-campo" placeholder="Email (opcional)">
+          <button type="submit" class="btn btn-primario">Cadastrar Fornecedor</button>
+          <button type="button" id="btnCancelarEdicaoFornecedor" class="btn btn-secundario" style="display: none;">Cancelar Edição</button>
+        </form>
+
+        <h3 class="subtitulo-secao">Lista de Fornecedores</h3>
+        <div id="listaFornecedores" class="area-resultado">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaFornecedores"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="inventario" class="secao-oculta">
+        <h3 class="subtitulo-secao">Realizar Contagem de Inventário</h3>
+        <form id="formInventario" class="form-padrao">
+          <select id="produtoInventarioSelect" class="select-campo" required>
+            <option value="">Selecione o Produto</option>
+          </select>
+          <input type="number" id="quantidadeContada" class="input-campo" placeholder="Quantidade Contada" min="0" required>
+          <textarea id="observacoesInventario" class="textarea-campo" placeholder="Observações da Contagem (opcional)"></textarea>
+          <button type="submit" class="btn btn-primario">Registrar Contagem</button>
+        </form>
+
+        <h3 class="subtitulo-secao">Histórico de Inventário</h3>
+        <div id="historicoInventario" class="area-resultado">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Produto</th>
+                <th>Sistema</th>
+                <th>Contado</th>
+                <th>Diferença</th>
+                <th>Observações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaHistoricoInventario"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="requisicoes" class="secao-oculta">
+        <h3 class="subtitulo-secao">Gerar Requisição de Compras</h3>
+        <div class="ferramentas-requisicao">
+            <button id="gerarRequisicaoEstoqueBaixo" class="btn btn-primario">Gerar Requisição (Estoque Baixo)</button>
+            <button id="imprimirRequisicao" class="btn btn-secundario" style="display: none;">Imprimir Requisição</button>
+        </div>
+        <div id="areaRequisicao" class="area-resultado" style="display: none;">
+            <h4>Requisição de Compra <span id="dataRequisicao"></span></h4>
+            <p>Gerado por: [Nome do Usuário/Sistema]</p>
+            <table class="tabela-requisicao">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Fornecedor</th>
+                        <th>Qtd. Atual</th>
+                        <th>Qtd. Mínima</th>
+                        <th>Qtd. Sugerida</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaItensRequisicao">
+                    </tbody>
+            </table>
+            <p>Observações: Considerar prazo de entrega e demanda.</p>
+        </div>
+
+        <h3 class="subtitulo-secao">Histórico de Requisições</h3>
+        <div id="historicoRequisicoes" class="area-resultado">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Qtd. Itens</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaHistoricoRequisicoes"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="historico" class="secao-oculta">
+        <h3 class="subtitulo-secao">Histórico de Movimentações</h3>
+        <ul id="listaHistorico" class="area-resultado"></ul>
+      </section>
+    </div>
+  </main>
+
+  <div id="modal" class="modal-oculto" style="display: none;">
+    <div class="modal-conteudo">
+      <h4 id="modalTitulo"></h4>
+      <p id="modalProduto"></p>
+      <div id="camposMovimentacao">
+        <select id="tipoMovimentacao" class="select-campo">
+          <option value="entrada">Entrada</option>
+          <option value="saida">Saída</option>
+          <option value="devolucao">Devolução</option>
+        </select>
+        <input type="number" id="quantidadeMovimentacao" class="input-campo" placeholder="Quantidade">
+        <textarea id="observacoesMovimentacao" class="textarea-campo" placeholder="Observações da movimentação (opcional)"></textarea>
+      </div>
+
+      <button id="btnConfirmarMovimentacao" class="btn btn-primario">Confirmar Movimentação</button>
+      <button class="btn btn-secundario" onclick="fecharModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="assets/js/estoque.js"></script>
+</body>
+</html>

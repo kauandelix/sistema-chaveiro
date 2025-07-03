@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de controle - Chaveiro Águia Dourada </title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container-header">
+      <h1 class="titulo-sistema-header">Chaveiro Águia Dourada</h1>
+      <nav class="nav-principal-header">
+        <ul class="lista-navegacao-header">
+          <li><a href="index.html" class="link-navegacao-header">Home</a></li>
+          <li><a href="clientes.html" class="link-navegacao-header">Clientes</a></li>
+          <li><a href="estoque.html" class="link-navegacao-header">Estoque</a></li>
+          <li><a href="agendamentos.html" class="link-navegacao-header">Agendamentos</a></li>
+          <li><a href="notas.html" class="link-navegacao-header">Notas</a></li>
+          <li><a href="caixa.html" class="link-navegacao-header">Caixa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      <h2 class="titulo-secao">Painel de controle do Chaveiro</h2>
+
+      <section class="atalhos-rapidos">
+        <h3 class="subtitulo-secao">Acesso Rápido</h3>
+        <div class="form-padrao">
+          <button onclick="location.href='agendamentos.html'" class="btn btn-primario">Agendar Serviço</button>
+          <button onclick="location.href='caixa.html'" class="btn btn-primario">Registrar Venda</button>
+          <button onclick="location.href='estoque.html'" class="btn btn-primario">Abrir Estoque</button>
+          <button onclick="location.href='clientes.html'" class="btn btn-primario">Cadastrar Cliente</button>
+          <button onclick="location.href='notas.html'" class="btn btn-primario">Emitir Nota</button>
+        </div>
+      </section>
+
+      <section class="secao-dashboard">
+        <h3 class="subtitulo-secao">Resumo Geral</h3>
+        <div class="cards-resumo">
+          <div class="card-resumo">
+            <h4>Total de Clientes</h4>
+            <p id="totalClientes">0</p>
+          </div>
+          <div class="card-resumo">
+            <h4>Produtos em Estoque</h4>
+            <p id="totalProdutosEstoque">0</p>
+          </div>
+          <div class="card-resumo">
+            <h4>Agendamentos Pendentes</h4>
+            <p id="agendamentosPendentes">0</p>
+          </div>
+          <div class="card-resumo">
+            <h4>Serviços "Em Andamento"</h4>
+            <p id="servicosEmAndamento">0</p>
+          </div>
+          <div class="card-resumo">
+            <h4>Caixa de Hoje</h4>
+            <p id="caixaHoje">R$ 0,00</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao-dashboard">
+        <h3 class="subtitulo-secao">Gráficos de Desempenho</h3>
+        <div class="graficos-container">
+          <div class="grafico-item">
+            <h4>Vendas por Forma de Pagamento</h4>
+            <canvas id="graficoVendasPagamento"></canvas>
+          </div>
+          <div class="grafico-item">
+            <h4>Produtos por Categoria (Estoque)</h4>
+            <canvas id="graficoProdutosCategoria"></canvas>
+          </div>
+          <div class="grafico-item">
+            <h4>Status dos Serviços</h4>
+            <canvas id="graficoServicosStatus"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao-dashboard">
+        <h3 class="subtitulo-secao">Vendas por Período</h3>
+        <div class="graficos-container">
+          <div class="grafico-item">
+            <h4>Vendas Mensais</h4>
+            <canvas id="graficoVendasMensal"></canvas>
+          </div>
+          </div>
+      </section>
+
+      <section class="secao-dashboard">
+        <h3 class="subtitulo-secao">Serviços Mais Procurados</h3>
+        <div class="graficos-container">
+          <div class="grafico-item">
+            <canvas id="graficoServicosPopulares"></canvas>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="secao-dashboard">
+        <h3 class="subtitulo-secao">Movimentação de Estoque Recente</h3>
+        <div class="tabela-movimentacao-estoque">
+          <table id="tabelaMovimentacaoEstoque">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="secao-dashboard">
+        <button class="btn btn-secundario" onclick="openCustomizationModal()">Painel de controle</button>
+      </section>
+
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F1') {
+        e.preventDefault();
+        location.href = 'agendamentos.html';
+      } else if (e.key === 'F2') {
+        e.preventDefault();
+        location.href = 'caixa.html';
+      } else if (e.key === 'F3') {
+        e.preventDefault();
+        location.href = 'estoque.html';
+      } else if (e.key === 'F4') {
+        e.preventDefault();
+        location.href = 'clientes.html';
+      } else if (e.key === 'F5') {
+        e.preventDefault();
+        location.href = 'notas.html';
+      }
+    });
+  </script>
+
+  <script src="assets/js/index.js"></script>
+</body>
+</html>
